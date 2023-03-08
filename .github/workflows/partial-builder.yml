@@ -115,6 +115,6 @@ jobs:
       - name: Build Omni-Image
         run: |
           docker build --push --no-cache \
-            --tag pzubuntu593/open-ai-chat-docker:test-${{ inputs.tag }}  \
+            --tag pzubuntu593/open-ai-chat-docker:${{ inputs.tag }}  \
             --build-arg COMMIT=$(git rev-parse HEAD) \
             --platform linux/amd64 --file=./Dockerfile .
