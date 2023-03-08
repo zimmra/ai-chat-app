@@ -21,8 +21,6 @@ RUN apk add yarn --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/ed
     yarn prisma migrate deploy && \
     yarn build
 
-VOLUME /app/ai-chat-app
-
 EXPOSE 3000
 
 ENTRYPOINT ["/run/entrypoint.sh"]
