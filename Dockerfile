@@ -14,7 +14,7 @@ COPY entrypoint.sh /run/
 RUN apk add yarn --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ && \
     chmod 777 /app/ai-chat-app && \
     mv /app/ai-chat-app/.env.example /app/ai-chat-app.env && \
-    chmod /run && \
+    chmod 777 /run && \
     chmod +x /run/entrypoint.sh && \
     cd /app/ai-chat-app && \
     yarn install && \
