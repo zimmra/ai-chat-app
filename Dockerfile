@@ -13,7 +13,7 @@ COPY entrypoint.sh /run/
 # TODO: replace custom repository when yarn is no longer in edge/community
 RUN apk add yarn --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ && \
     chmod 777 /app/ai-chat-app && \
-    mv /app/ai-chat-app/.env.example /app/ai-chat-app.env && \
+    mv /app/ai-chat-app/.env.example /app/ai-chat-app/.env && \
     chmod 777 /run && \
     chmod +x /run/entrypoint.sh && \
     cd /app/ai-chat-app && \
