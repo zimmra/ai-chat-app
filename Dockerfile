@@ -27,6 +27,7 @@ RUN yarn install && \
     yarn build
 
 RUN \
+    mkdir -p /config && \
     chmod 777 /config
 
 EXPOSE 3000
