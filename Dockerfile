@@ -8,8 +8,6 @@ ENV LANG="C.UTF-8" \
 # COPY app/package.json /usr/src/app/
 # COPY app/yarn.lock /usr/src/app/
 
-VOLUME /app
-VOLUME /config
 COPY . /app
 COPY entrypoint.sh /run/
 WORKDIR /app
@@ -29,6 +27,9 @@ RUN yarn install && \
 RUN \
     mkdir -p /config && \
     chmod 777 /config
+
+VOLUME /app
+VOLUME /config
 
 EXPOSE 3000
 
