@@ -7,19 +7,27 @@ ENV LANG="C.UTF-8" \
 
 # COPY app/package.json /usr/src/app/
 # COPY app/yarn.lock /usr/src/app/
+
+VOLUME /app
+VOLUME /config
 COPY . /app
 COPY entrypoint.sh /run/
+WORKDIR /app
 
 # TODO: replace custom repository when yarn is no longer in edge/community
-RUN apk add yarn --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ && \
-    chmod 777 /app && \
+RUN apk add yarn --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/
+
+RUN chmod 777 /app && \
     mv /app/.env.example /app/.env && \
     chmod 777 /run && \
-    chmod +x /run/entrypoint.sh && \
-    cd /app && \
-    yarn install && \
+    chmod +x /run/entrypoint.sh
+
+RUN yarn install && \
     yarn prisma migrate deploy && \
     yarn build
+
+RUN \
+    chmod 777 /config
 
 EXPOSE 3000
 
