@@ -12,8 +12,8 @@ concurrency:
 jobs:
 
   build-release:
-    name: Build Tagged Release
-    uses: ./.github/workflows/builder.yml
+    name: Build Nightly Release
+    uses: ./.github/workflows/nightly-builder.yml
     with:
       tag: nightly
     secrets:

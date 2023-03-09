@@ -1,4 +1,4 @@
-name: Build Container
+name: Build Latest Container
 
 on:
   workflow_call:
@@ -14,7 +14,7 @@ on:
 
 jobs:
 
-  build-omni:
+  build-latest:
     runs-on: ubuntu-latest
     name: Build Backend
     steps:
@@ -40,9 +40,10 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build Omni-Image
+      - name: Build Image for Release
         run: |
           docker build --push --no-cache \
             --tag ${{ vars.DOCKERHUB_REPONAME }}/${{ vars.DOCKERHUB_IMAGENAME}}:${{ inputs.tag }}  \
+            --tag ${{ vars.DOCKERHUB_REPONAME }}/${{ vars.DOCKERHUB_IMAGENAME}}:latest  \
             --build-arg COMMIT=$(git rev-parse HEAD) \
             --platform linux/amd64 --file=./Dockerfile .
