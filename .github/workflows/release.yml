@@ -8,7 +8,7 @@ jobs:
 
   build-release:
     name: Build Latest Release
-    uses: ./.github/workflows/builder.yml
+    uses: ./.github/workflows/latest-builder.yml
     with:
       tag: ${{ github.event.release.tag_name }}
     secrets:
