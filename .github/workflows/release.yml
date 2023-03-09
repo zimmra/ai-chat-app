@@ -10,7 +10,7 @@ jobs:
     name: Build Tagged Release
     uses: ./.github/workflows/builder.yml
     with:
-      tag: ${{ github.event.release.tag_name }}
+      tag: ${{ github.event.release.tag_name }}" --tag "${{ vars.DOCKERHUB_REPONAME }}"/"${{ vars.DOCKERHUB_IMAGENAME}}":latest"
     secrets:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
